@@ -9,6 +9,8 @@ from sklearn.metrics import mean_squared_error, roc_auc_score, confusion_matrix,
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import learning_curve
+from sklearn.preprocessing import MinMaxScaler
 
 # Load the csv file into a data Structure
 dataframe = pd.read_csv('Customer Churn.csv')
@@ -104,6 +106,11 @@ dataframe.drop(['ID','Age Group'], axis=1)
 dataframe.fillna(dataframe.mean())
 dataframe.drop_duplicates()
 
+# feature scaling using minmax
+scaler = MinMaxScaler()
+scaled = scaler.fit_transform(dataframe)
+dataframe = pd.DataFrame(scaled, columns=dataframe.columns)
+
 # Task 7
 # Split the dataset into training (80%) and test (20%), asuming the target is Churn
 # will be used in classification tasks
@@ -179,9 +186,6 @@ axes16.set_xlabel('Actual Customer values')
 axes16.set_ylabel('Predicted Customer values')
 axes16.grid(visible=False)
 
-# For each axses show the plot
-plt.show()
-
 # Part threee: Classsification
 dataframe4 = dataframe
 dataframe4.drop(['ID', 'Plan', 'Status','Age Group'], axis=1)
@@ -189,14 +193,10 @@ dataframe4.fillna(dataframe4.mean())
 dataframe4.drop_duplicates()
 # split into train and test for each model
 x_train_4, x_test_4, y_train_4, y_test_4 = train_test_split(dataframe4.drop('Churn', axis=1), dataframe4['Churn'], test_size=0.2)
-x_train_5 = x_train_6 = x_train_4
-x_test_5 = x_test_6 = x_test_4
-y_train_5 = y_train_6 = y_train_4
-y_test_6 = y_test_5 = y_test_4
 
 # Task 1: k-Nearest Neighbors classifier to predict Churn
 # Create the k-NN classifier
-knn = KNeighborsClassifier(n_neighbors=5)
+knn = KNeighborsClassifier(n_neighbors=20)
 knn.fit(x_train_4, y_train_4)
 y_pred_knn=knn.predict(x_test_4)
 #get the confusion matrix for KNN
@@ -214,33 +214,61 @@ print('KNN precsion: ', precision_knn)
 # Task 2: Naive Bayes classifier to predict Churn 
 # Create the NB classifier
 nv = GaussianNB()
-nv.fit(x_train_5,y_train_5)
-y_pred_nv=nv.predict(x_test_5)
+nv.fit(x_train_4,y_train_4)
+y_pred_nv=nv.predict(x_test_4)
 #get the confusion matrix for NB
-confusion_matrix_nv = confusion_matrix(y_test_5, y_pred_nv)
+confusion_matrix_nv = confusion_matrix(y_test_4, y_pred_nv)
 print(confusion_matrix_nv)
 # Obtain the predicted probabilities for the positive class
-y_pred_proba = nv.predict_proba(x_test_5)[:, 1]
+y_pred_proba = nv.predict_proba(x_test_4)[:, 1]
 # Calculate the ROC/AUC score
-roc_auc_nv = roc_auc_score(y_test_5, y_pred_proba)
+roc_auc_nv = roc_auc_score(y_test_4, y_pred_proba)
 print('ROC/AUC NV: ',roc_auc_nv)
 # Calculate presion
-precision_nv= precision_score(y_test_5, y_pred_nv)
+precision_nv= precision_score(y_test_4, y_pred_nv)
 print('NV precsion: ', precision_nv)
 
 # Task 3: Logistic Regression classifier to predict Churn
 # create model
-lr = LogisticRegression()
-lr.fit(x_train_6, y_train_6)
-y_pred_lr = lr.predict(x_test_6)
+lr = LogisticRegression(max_iter=1000)
+lr.fit(x_train_4, y_train_4)
+y_pred_lr = lr.predict(x_test_4)
 #get the confusion matrix for NB
-confusion_matrix_lr = confusion_matrix(y_test_6, y_pred_lr)
+confusion_matrix_lr = confusion_matrix(y_test_4, y_pred_lr)
 print(confusion_matrix_lr)
 # Obtain the predicted probabilities for the positive class
-y_pred_proba = lr.predict_proba(x_test_6)[:, 1]
+y_pred_proba = lr.predict_proba(x_test_4)[:, 1]
 # Calculate the ROC/AUC score
-roc_auc_lr = roc_auc_score(y_test_6, y_pred_proba)
+roc_auc_lr = roc_auc_score(y_test_4, y_pred_proba)
 print('ROC/AUC LR: ',roc_auc_lr)
 # Calculate presion
-precision_lr = precision_score(y_test_6, y_pred_lr)
+precision_lr = precision_score(y_test_4, y_pred_lr)
 print('LR precsion: ', precision_lr)
+
+# Cross validation and plotting the learning graph for each model
+train_sizes, train_scores, test_scores = learning_curve(LogisticRegression(), dataframe4.drop('Churn', axis=1), dataframe4['Churn'], cv=5)
+figure17, axes17 = plt.subplots()
+axes17.plot(train_sizes, train_scores.mean(axis=1), label='Training score')
+axes17.plot(train_sizes, test_scores.mean(axis=1), label='Test score')
+axes17.set_xlabel('LR Training examples')
+axes17.set_ylabel('Score')
+axes17.legend(loc='best')
+
+train_sizes_1, train_scores_1, test_scores_1= learning_curve(GaussianNB(), dataframe4.drop('Churn', axis=1), dataframe4['Churn'], cv=5)
+figure18, axes18 = plt.subplots()
+axes18.plot(train_sizes_1, train_scores_1.mean(axis=1), label='Training score')
+axes18.plot(train_sizes_1, test_scores_1.mean(axis=1), label='Test score')
+axes18.set_xlabel('NV Training examples')
+axes18.set_ylabel('Score')
+axes18.legend(loc='best')
+
+train_sizes_2, train_scores_2, test_scores_2 = learning_curve(KNeighborsClassifier(), dataframe4.drop('Churn', axis=1), dataframe4['Churn'], cv=5)
+figure19, axes19 = plt.subplots()
+axes19.plot(train_sizes_2, train_scores_2.mean(axis=1), label='Training score')
+axes19.plot(train_sizes_2, test_scores_2.mean(axis=1), label='Test score')
+axes19.set_xlabel('KNN Training examples')
+axes19.set_ylabel('Score')
+axes19.legend(loc='best')
+
+# For each axses show the plot
+plt.show()
