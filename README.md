@@ -16,7 +16,7 @@ After completing the analysis of the Customer Churn Data provided, the results c
 
 ![image](https://user-images.githubusercontent.com/65151701/218584896-412ea09d-881e-40df-94e3-95a0557ffbb9.png)
 
-<p>Linear reggression model:</p>
+<p>Linear reggression model to predict customer value:</p>
 
 ![image](https://user-images.githubusercontent.com/65151701/218584943-bff105d5-be07-4e69-88a5-825fc87a5f53.png)
 
