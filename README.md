@@ -8,41 +8,32 @@ After completing the analysis of the Customer Churn Data provided, the results c
 1-	Frequency of SMS
 2-	Frequency of use
 3-	Seconds of use
-<p>As for the classification models, the Naive Bayes classifier was found to be the best performer among the three classification algorithms tested, achieving the highest ROC/AUC score and the highest precision.</p>
+<p>As for the classification models, the Naive Bayes classifier was found to be the best performer among the three classification algorithms tested, because it is not an overfitting neither an under fitting model.</p>
 <p>The results of this analysis can be used by your company to reduce customer churn. The consideration may be that the company starts using the Naive Bayes classifier as a tool to predict customer churn, hence prevent it. Also focus on improving the above attributes to make higher customer values. </p>
 
 # Screenshots:
-<p>diffrent types of EDA were performed:</p>
+<p>Data corelation, multivariate analysis:</p>
 
-![image](https://user-images.githubusercontent.com/65151701/216785248-39e10f9b-a411-4b92-9a02-3b06533d7060.png)
+![image](https://user-images.githubusercontent.com/65151701/218584896-412ea09d-881e-40df-94e3-95a0557ffbb9.png)
 
-<p>Summary statics:</p>
+<p>Linear reggression model:</p>
 
-![image](https://user-images.githubusercontent.com/65151701/216785251-8cfe2897-3014-4773-b101-19d3d14c5c5d.png)
+![image](https://user-images.githubusercontent.com/65151701/218584943-bff105d5-be07-4e69-88a5-825fc87a5f53.png)
 
-<p>Data corelation pearsons coofecint:</p>
+<p> Comarison of 3 linear reggression models:</p>
 
-![image](https://user-images.githubusercontent.com/65151701/216785256-757a5309-2e59-4d3b-b43e-196acf64e33b.png)
+![image](https://user-images.githubusercontent.com/65151701/218585013-fab797a1-11a1-4b55-a564-2625122acde2.png)
 
-<p>Diffrent attributes for diffrent Linear reggression models and their performance:</p>
+<p> KNN classifier: </p>
+high variance overfitting
 
-![image](https://user-images.githubusercontent.com/65151701/216785258-a16cd47e-1e18-49f7-a124-bb5d4da871ca.png)
+![image](https://user-images.githubusercontent.com/65151701/218585100-0c3e9a1f-a5d5-467c-a361-003f33c390c5.png)
 
-<p>Diffrent classification models and their performance:</p>
+<p>Naive bayes classifier: </p>
 
-![image](https://user-images.githubusercontent.com/65151701/216785259-efa076a7-4ca9-4b24-a25b-abdf588dc68f.png)
+![image](https://user-images.githubusercontent.com/65151701/218585183-2561c70f-8770-412d-8ecd-fdb804d13879.png)
 
-<p> Learning graph for each model (not included in the dodumnet): </p>
-Logestic regression:
+<p>Logestic regression: </p>
+high bias underfitting
 
-![image](https://user-images.githubusercontent.com/65151701/218569018-8e6e3ecc-11dc-4054-96d4-05f005a65b59.png)
-
-KNN:
-
-![image](https://user-images.githubusercontent.com/65151701/218569109-f31d382f-3e33-474e-8b82-481cfc7df861.png)
-
-Naive Bayes:
-
-![image](https://user-images.githubusercontent.com/65151701/218569218-1d4a7467-3cb8-4bc8-aa77-d5f0d9b3a179.png)
-
-
+![image](https://user-images.githubusercontent.com/65151701/218585266-795f7871-f2fe-47bd-8317-d7defa77913d.png)
