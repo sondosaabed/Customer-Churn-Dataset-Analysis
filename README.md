@@ -1,4 +1,4 @@
-# Customer-Churn-Dataset
+# Customer-Churn-Dataset-Analysis
 This project was created as part of Machine Learning Course at BZU.
 After completing the analysis of the Customer Churn Data provided, the results can be found in the document provided. Based on the analysis conclusions were found that will better decision making concerning the reducing of customer churn and improving the customer’s value.
 
