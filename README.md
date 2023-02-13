@@ -31,3 +31,18 @@ After completing the analysis of the Customer Churn Data provided, the results c
 <p>Diffrent classification models and their performance:</p>
 
 ![image](https://user-images.githubusercontent.com/65151701/216785259-efa076a7-4ca9-4b24-a25b-abdf588dc68f.png)
+
+<p> Learning graph for each model (not included in the dodumnet): </p>
+Logestic regression:
+
+![image](https://user-images.githubusercontent.com/65151701/218569018-8e6e3ecc-11dc-4054-96d4-05f005a65b59.png)
+
+KNN:
+
+![image](https://user-images.githubusercontent.com/65151701/218569109-f31d382f-3e33-474e-8b82-481cfc7df861.png)
+
+Naive Bayes:
+
+![image](https://user-images.githubusercontent.com/65151701/218569218-1d4a7467-3cb8-4bc8-aa77-d5f0d9b3a179.png)
+
+
