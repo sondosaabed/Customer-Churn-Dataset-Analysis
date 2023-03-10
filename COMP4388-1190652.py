@@ -1,4 +1,4 @@
-# Sondos Aabed, 1190652
+# Sondos Aabed
 # Import Libraries
 import pandas as pd
 import matplotlib.pyplot as plt
